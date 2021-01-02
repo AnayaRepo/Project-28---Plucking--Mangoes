@@ -4,10 +4,13 @@ class Elastic{
             bodyA: bodyA,
             pointB: pointB,
             stiffness: 0.004,
-            length: 10
+            length: 1
         }
         this.elastic = Constraint.create(options);
         World.add(world, this.elastic);
+    }
+    attach(body){
+        this.elastic.bodyA = body;
     }
 
     fly() {

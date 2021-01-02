@@ -22,9 +22,9 @@ function setup() {
 	//Create the Bodies Here.
 	tree = new Tree(625, 445, 350, 500);
 	ground = new Ground(400, 685, 800, 30);
-	boy = new Boy(200, 625, 120, 180);
+	boy = new Boy(190, 625, 120, 180);
 	stone = new Stone(200, 580, 20);
-	elastic = new Elastic(stone.body,{x:165, y:580});
+	elastic = new Elastic(stone.body,{x:150, y:580});
 	mango1 = new Mango(600, 345, 25);
 	mango2 = new Mango(680, 255, 25);
 	mango3 = new Mango(625, 435, 25);
@@ -40,14 +40,17 @@ function setup() {
 
 function draw() {
 	background("lightyellow");
-  	Engine.update(engine);
+	Engine.update(engine);
+	  
+	textSize(20);
+	textStyle(BOLDITALIC);
+	text("Press space for a second chance to play", 100, 200);
   
   	tree.display();
 	ground.display();
 	boy.display(); 
-	stone.display();
-
 	elastic.display();
+	stone.display();
 
 	mango1.display();
 	mango2.display();
@@ -64,6 +67,8 @@ function draw() {
 	detectCollision(stone, mango3);
 	detectCollision(stone, mango4);
 	detectCollision(stone, mango5);
+	detectCollision(stone, mango6);
+	detectCollision(stone, mango7);
  
  
 }
@@ -85,6 +90,13 @@ function detectCollision(lstone, lmango){
 		Matter.Body.setStatic(lmango.body, false);
 	}
 
+}
+
+function keyPressed(){
+	if(keyCode===32){
+		Matter.Body.setPosition(stone.body,{x:235, y:420});
+		elastic.attach(stone.body);
+	}
 }
 
 
